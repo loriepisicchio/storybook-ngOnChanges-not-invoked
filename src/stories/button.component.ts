@@ -1,18 +1,25 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import {Component, Input, Output, EventEmitter, OnInit, OnChanges, SimpleChanges} from '@angular/core';
 
 @Component({
   selector: 'storybook-button',
-  template: ` <button
-    type="button"
-    (click)="onClick.emit($event)"
-    [ngClass]="classes"
-    [ngStyle]="{ 'background-color': backgroundColor }"
-  >
-    {{ label }}
-  </button>`,
+  template: `
+    <button
+        type="button"
+        (click)="onClick.emit($event)"
+        [ngClass]="classes"
+        [ngStyle]="{ 'background-color': backgroundColor }"
+    >
+      {{ label }}
+    </button>`,
   styleUrls: ['./button.css'],
 })
-export default class ButtonComponent {
+export default class ButtonComponent implements OnInit, OnChanges {
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log('ngOnChanges', changes);
+  }
+  ngOnInit(): void {
+    console.log('ngOnInit', this.label);
+  }
   /**
    * Is this the principal call to action on the page?
    */

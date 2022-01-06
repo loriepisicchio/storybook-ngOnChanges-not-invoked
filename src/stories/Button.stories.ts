@@ -13,9 +13,13 @@ export default {
 } as Meta;
 
 // More on component templates: https://storybook.js.org/docs/angular/writing-stories/introduction#using-args
-const Template: Story<Button> = (args: Button) => ({
-  props: args,
-});
+const Template: Story<Button> = ({label, primary}) => {
+  console.log('Template', label, primary);
+  return {
+    // template: '<storybook-button [label]="label" [primary]="primary"></storybook-button>',
+    props: {label, primary}
+  };
+};
 
 export const Primary = Template.bind({});
 // More on args: https://storybook.js.org/docs/angular/writing-stories/args
